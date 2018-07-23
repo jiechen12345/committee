@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -19,8 +22,9 @@ public class LoginApi {
 
     @PostMapping(value = "/login")
     public String login(@RequestParam("account") String account, @RequestParam("password") String password
-            , Map<String, Object> map, HttpSession session) {
+            , Map<String, Object> map, HttpSession session,HttpServletRequest request) throws IOException {
         if (!StringUtils.isEmpty(account) && "123".equals(password)) {
+            //String ip=getIpAddress(request);
             session.setAttribute("loginUser", account);
             return "redirect:/main.html";
         } else {
@@ -28,4 +32,6 @@ public class LoginApi {
             return "index";
         }
     }
+
+
 }

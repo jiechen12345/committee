@@ -21,7 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
     //註冊攔截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginHendlerInterceptor()).addPathPatterns("/**")
-//                .excludePathPatterns("/index.html", "/", "/api/login");
+       registry.addInterceptor(new LoginHendlerInterceptor()).addPathPatterns("/**")
+               .excludePathPatterns("/index.html", "/", "/api/login");
     }
 }
