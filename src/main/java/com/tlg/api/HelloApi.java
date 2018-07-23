@@ -3,6 +3,7 @@ package com.tlg.api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
  * Created by JieChen on 2018/7/20.
  */
 @Controller
+@RequestMapping("/test")
 public class HelloApi {
     @ResponseBody
     @RequestMapping("/hello")

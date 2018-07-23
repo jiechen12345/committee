@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://getbootstrap.com/docs/4.1/examples/sign-in/ -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,12 +18,13 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" action="websiteMgt.html" th:action="@{/login}" method="post">
+<form class="form-signin" action="websiteMgt.html" th:action="@{/api/login}" method="post">
     <img class="mb-4 mx-auto" src="/img/tlg.png" th:src="@{/img/tlg.png}" alt="" width="302" height="90">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <p style="color: darkred" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputAccount" class="sr-only">account</label>
-    <input type="text" name="account" id="inputAccount" class="form-control" placeholder="account" required="" autofocus="">
+    <input type="text" name="account" id="inputAccount" class="form-control" placeholder="account" required=""
+           autofocus="">
     <label for="inputPassword" class="sr-only">password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="password" required="">
     <div class="checkbox mb-3">
@@ -35,4 +37,5 @@
 </form>
 
 
-</body></html>
+</body>
+</html>
