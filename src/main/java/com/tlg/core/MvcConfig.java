@@ -22,6 +22,14 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
        registry.addInterceptor(new LoginHendlerInterceptor()).addPathPatterns("/**")
-               .excludePathPatterns("/index.html", "/", "/api/login");
+               .excludePathPatterns("/index.html", "/", "/api/login")
+               .excludePathPatterns("/css/**")
+               .excludePathPatterns("/js/**")
+               .excludePathPatterns("/font/**")
+               .excludePathPatterns("/img/**");
+//               .excludePathPatterns("/**/*.map")
+//               .excludePathPatterns("/**/*.js")
+//               .excludePathPatterns("/**/*.png")
+//               .excludePathPatterns("/**/*.css");
     }
 }
