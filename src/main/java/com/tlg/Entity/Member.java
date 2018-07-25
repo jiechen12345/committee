@@ -15,6 +15,8 @@ public class Member {
     @Id
     String id;
     String account;
+    String password;
+    String neme;
 
     public String getAccount() {
         return account;
@@ -32,8 +34,7 @@ public class Member {
         this.password = password;
     }
 
-    String password;
-    String neme;
+
 
     public String getId() {
         return id;

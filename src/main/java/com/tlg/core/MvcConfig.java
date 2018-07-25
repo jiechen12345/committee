@@ -26,10 +26,11 @@ public class MvcConfig implements WebMvcConfigurer {
                .excludePathPatterns("/css/**")
                .excludePathPatterns("/js/**")
                .excludePathPatterns("/font/**")
-               .excludePathPatterns("/img/**");
+               .excludePathPatterns("/img/**")
+               .excludePathPatterns("/**/*.map");
 //               .excludePathPatterns("/**/*.map")
 //               .excludePathPatterns("/**/*.js")
 //               .excludePathPatterns("/**/*.png")
-//               .excludePathPatterns("/**/*.css");
+
     }
 }
