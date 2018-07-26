@@ -1,24 +1,26 @@
-package com.tlg.Entity;
+package com.tlg.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.thymeleaf.spring5.view.reactive.ThymeleafReactiveViewResolver;
+import com.tlg.Entity.Departemt;
 
-import javax.persistence.*;
+import javax.persistence.ManyToOne;
 
 /**
- * Created by JieChen on 2018/7/24.
+ * Created by jiechen on 2018/7/26.
  */
-
-@Entity
-public class Member {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+public class MemberDto {
+    private String id;
     private String account;
     private String password;
     private String neme;
-    @ManyToOne(targetEntity = Departemt.class)
-    private Departemt departemt;
+    private String depName;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getAccount() {
         return account;
@@ -36,14 +38,6 @@ public class Member {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getNeme() {
         return neme;
     }
@@ -52,22 +46,22 @@ public class Member {
         this.neme = neme;
     }
 
-    public Departemt getDepartemt() {
-        return departemt;
+    public String getDepName() {
+        return depName;
     }
 
-    public void setDepartemt(Departemt departemt) {
-        this.departemt = departemt;
+    public void setDepName(String depName) {
+        this.depName = depName;
     }
 
     @Override
     public String toString() {
-        return "Member{" +
+        return "MemberDto{" +
                 "id='" + id + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", neme='" + neme + '\'' +
-                ", departemt=" + departemt +
+                ", depName='" + depName + '\'' +
                 '}';
     }
 }

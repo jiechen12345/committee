@@ -11,12 +11,12 @@ import java.util.List;
 @Entity
 public class Departemt {
     @Id
-    public Integer id;
+    private Integer id;
 
-    public String depName;
+    private String depName;
 
     @OneToMany(targetEntity = Member.class, mappedBy = "departemt")
-    public List<Member> members = new LinkedList<>();
+    private List<Member> members = new LinkedList<>();
 
     public Integer getId() {
         return id;

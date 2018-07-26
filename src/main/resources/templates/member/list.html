@@ -54,7 +54,7 @@
                         <td th:text="${member.account}">1</td>
                         <td th:text="${member.password}">1</td>
                         <td th:text="${member.getNeme()}">1</td>
-                        <td th:text="${member.getDepartemt().getDepName()}">1</td>
+                        <td th:text="${member.departemt.depName!=null}?${member.departemt.depName}:' ' ">1</td>
 
                         <td>
                             <a  href="#" th:href="@{/member/}+${member.id}" class="btn btn-sm btn-primary">编辑</a>
