@@ -3,8 +3,7 @@ package com.tlg.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.thymeleaf.spring5.view.reactive.ThymeleafReactiveViewResolver;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by JieChen on 2018/7/24.
@@ -13,10 +12,13 @@ import javax.persistence.Id;
 @Entity
 public class Member {
     @Id
-    String id;
-    String account;
-    String password;
-    String neme;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Integer id;
+    public String account;
+    public String password;
+    public String neme;
+    @ManyToOne(targetEntity = Departemt.class)
+    public Departemt departemt;
 
     public String getAccount() {
         return account;
@@ -34,13 +36,11 @@ public class Member {
         this.password = password;
     }
 
-
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,6 +52,14 @@ public class Member {
         this.neme = neme;
     }
 
+    public Departemt getDepartemt() {
+        return departemt;
+    }
+
+    public void setDepartemt(Departemt departemt) {
+        this.departemt = departemt;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -59,6 +67,7 @@ public class Member {
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", neme='" + neme + '\'' +
+                ", departemt=" + departemt +
                 '}';
     }
 }
