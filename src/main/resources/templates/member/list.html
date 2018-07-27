@@ -71,8 +71,8 @@
         </form>
     </div>
 </div>
-<!-- ***form -->
-<div id="panel-customer" class="modal fade" role="dialog">
+<!-- *****form *****-->
+<div id="panel-customer" class="modal fade" role="dialog" th:fragment="modalContens">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -83,7 +83,7 @@
             <div class="modal-body">
 
                 <form class="form-group">
-                    <label>Full Name</label>
+                    <label th:text="${aaa}">Full Name</label>
                     <input type="text" name="name" id="frm-customer-name" class="form-control">
 
                     <label>Email Address</label>
