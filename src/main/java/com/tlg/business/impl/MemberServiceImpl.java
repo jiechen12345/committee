@@ -2,8 +2,10 @@ package com.tlg.business.impl;
 
 import com.tlg.Entity.Member;
 import com.tlg.business.MemberService;
+import com.tlg.dao.MemberDao;
 import com.tlg.dto.MemberDto;
 import com.tlg.request.MemberReq;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +18,14 @@ import static java.util.stream.Collectors.toList;
  */
 @Service
 public class MemberServiceImpl implements MemberService{
-
+    @Autowired
+    private MemberDao memberDao;
     @Override
     public List<MemberDto> findAll() {
-        List<Member> memberList = memberDao.findAll();
-        model.addAttribute("members",memberList);
-        List<Member> teacherDtos = memberDao.findAll().stream()
+        List<MemberDto> memberDtoList = memberDao.findAll().stream()
                 .map(this::getMemberDto)
                 .collect(Collectors.toList());
+        return memberDtoList;
     }
 
     @Override
@@ -31,11 +33,17 @@ public class MemberServiceImpl implements MemberService{
 
     }
 
-    private MemberDto getTeacherDto(Member teacher) {
-        MemberDto teacherDto = new MemberDto();
-        teacherDto.setName(teacher.getName());
-        teacherDto.setId(teacher.getId());
-        teacherDto.setLessons(teacher.getLessons().stream().map(it -> it.getName()).collect(toList()));
-        return teacherDto;
+    private MemberDto getMemberDto(Member member) {
+        MemberDto memberDto = new MemberDto();
+        memberDto.setId(member.getId().toString());
+        memberDto.setAccount(member.getAccount());
+        memberDto.setPassword(member.getPassword());
+        memberDto.setNeme(member.getNeme());
+        if (member.getDepartemt() != null) {
+            memberDto.setDepName(member.getDepartemt().getDepName());
+        } else {
+            memberDto.setDepName("");
+        }
+        return memberDto;
     }
 }
