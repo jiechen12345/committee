@@ -1,7 +1,9 @@
 package com.tlg.business.impl;
 
+import com.tlg.Entity.Departemt;
 import com.tlg.Entity.Member;
 import com.tlg.business.MemberService;
+import com.tlg.dao.DepartmentDao;
 import com.tlg.dao.MemberDao;
 import com.tlg.dto.MemberDto;
 import com.tlg.request.MemberReq;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -20,6 +23,8 @@ import static java.util.stream.Collectors.toList;
 public class MemberServiceImpl implements MemberService{
     @Autowired
     private MemberDao memberDao;
+    @Autowired
+    private DepartmentDao departmentDao;
     @Override
     public List<MemberDto> findAll() {
         List<MemberDto> memberDtoList = memberDao.findAll().stream()
@@ -30,6 +35,15 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void create(MemberReq memberReq) {
+        Member member=new Member();
+        member.setAccount(memberReq.getAccount());
+        member.setNeme(memberReq.getName());
+        member.setPassword(memberReq.getPassword());
+        //finOne被findById取代??要怎弄?
+       //Optional<Departemt> byId = departmentDao.findById(Integer.parseInt(memberReq.getDepId()));
+        //  Departemt departemt =departmentDao.findOne("1");
+      // member.setDepartemt(departmentDao.findById(memberReq.getDepId()));
+        memberDao.save(member);
 
     }
 

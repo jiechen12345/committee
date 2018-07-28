@@ -7,8 +7,9 @@ public class MemberReq {
     private String id;
     private String account;
     private String password;
-    private String neme;
-    private String depName;
+
+    private String name;
+    private String depId;
 
     public String getId() {
         return id;
@@ -34,20 +35,20 @@ public class MemberReq {
         this.password = password;
     }
 
-    public String getNeme() {
-        return neme;
+    public String getName() {
+        return name;
     }
 
-    public void setNeme(String neme) {
-        this.neme = neme;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDepName() {
-        return depName;
+    public String getDepId() {
+        return depId;
     }
 
-    public void setDepName(String depName) {
-        this.depName = depName;
+    public void setDepId(String depId) {
+        this.depId = depId;
     }
 
     @Override
@@ -56,8 +57,8 @@ public class MemberReq {
                 "id='" + id + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
-                ", neme='" + neme + '\'' +
-                ", depName='" + depName + '\'' +
+                ", name='" + name + '\'' +
+                ", depId='" + depId + '\'' +
                 '}';
     }
 }

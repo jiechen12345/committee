@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * Created by JieChen on 2018/7/24.
  */
 @Repository
-public interface DepartmentDao extends JpaRepository<Departemt,String>, JpaSpecificationExecutor<Departemt> {
+public interface DepartmentDao extends JpaRepository<Departemt,String> {
 }
