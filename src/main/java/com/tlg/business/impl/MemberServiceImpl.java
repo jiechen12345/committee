@@ -11,20 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * Created by jiechen on 2018/7/26.
  */
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberDao memberDao;
     @Autowired
     private DepartmentDao departmentDao;
+
     @Override
     public List<MemberDto> findAll() {
         List<MemberDto> memberDtoList = memberDao.findAll().stream()
@@ -35,14 +33,13 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void create(MemberReq memberReq) {
-        Member member=new Member();
+        Member member = new Member();
         member.setAccount(memberReq.getAccount());
         member.setNeme(memberReq.getName());
         member.setPassword(memberReq.getPassword());
         //finOne被findById取代??要怎弄?
-       //Optional<Departemt> byId = departmentDao.findById(Integer.parseInt(memberReq.getDepId()));
-        //  Departemt departemt =departmentDao.findOne("1");
-      // member.setDepartemt(departmentDao.findById(memberReq.getDepId()));
+        Departemt departemt = departmentDao.findById(Integer.parseInt(memberReq.getDepId())).get();
+        member.setDepartemt(departemt);
         memberDao.save(member);
 
     }
