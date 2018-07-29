@@ -11,8 +11,17 @@ public class MemberDto {
     private String id;
     private String account;
     private String password;
-    private String neme;
+    private String name;
+    private Integer depId;
     private String depName;
+
+    public Integer getDepId() {
+        return depId;
+    }
+
+    public void setDepId(Integer depId) {
+        this.depId = depId;
+    }
 
     public String getId() {
         return id;
@@ -38,12 +47,12 @@ public class MemberDto {
         this.password = password;
     }
 
-    public String getNeme() {
-        return neme;
+    public String getName() {
+        return name;
     }
 
-    public void setNeme(String neme) {
-        this.neme = neme;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDepName() {
@@ -60,7 +69,8 @@ public class MemberDto {
                 "id='" + id + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
-                ", neme='" + neme + '\'' +
+                ", name='" + name + '\'' +
+                ", depId='" + depId + '\'' +
                 ", depName='" + depName + '\'' +
                 '}';
     }

@@ -10,5 +10,6 @@ import java.util.List;
  */
 public interface MemberService {
     List<MemberDto> findAll();
+    MemberDto findOne(Integer id);
     void create(MemberReq memberReq);
 }

@@ -16,7 +16,7 @@ public class Member {
     private Integer id;
     private String account;
     private String password;
-    private String neme;
+    private String name;
     @ManyToOne(targetEntity = Departemt.class)
     private Departemt departemt;
 
@@ -44,12 +44,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getNeme() {
-        return neme;
+    public String getName() {
+        return name;
     }
 
-    public void setNeme(String neme) {
-        this.neme = neme;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Departemt getDepartemt() {
@@ -63,10 +63,10 @@ public class Member {
     @Override
     public String toString() {
         return "Member{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
-                ", neme='" + neme + '\'' +
+                ", name='" + name + '\'' +
                 ", departemt=" + departemt +
                 '}';
     }

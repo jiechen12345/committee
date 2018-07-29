@@ -35,22 +35,27 @@ public class MemberServiceImpl implements MemberService {
     public void create(MemberReq memberReq) {
         Member member = new Member();
         member.setAccount(memberReq.getAccount());
-        member.setNeme(memberReq.getName());
+        member.setName(memberReq.getName());
         member.setPassword(memberReq.getPassword());
-        //finOne被findById取代??要怎弄?
         Departemt departemt = departmentDao.findById(Integer.parseInt(memberReq.getDepId())).get();
         member.setDepartemt(departemt);
         memberDao.save(member);
 
     }
 
+    @Override
+    public MemberDto findOne(Integer id) {
+        Member member = memberDao.findById(id).get();
+        return getMemberDto(member);
+    }
     private MemberDto getMemberDto(Member member) {
         MemberDto memberDto = new MemberDto();
         memberDto.setId(member.getId().toString());
         memberDto.setAccount(member.getAccount());
         memberDto.setPassword(member.getPassword());
-        memberDto.setNeme(member.getNeme());
+        memberDto.setName(member.getName());
         if (member.getDepartemt() != null) {
+            memberDto.setDepId(member.getDepartemt().getId());
             memberDto.setDepName(member.getDepartemt().getDepName());
         } else {
             memberDto.setDepName("");

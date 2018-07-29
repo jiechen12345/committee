@@ -38,18 +38,29 @@ public class MemberApi {
     public String toAddModal(Model model) throws IOException {
        List<Departemt> departments = departmentDao.findAll();
         model.addAttribute("depts",departments);
-        return "member/list::modalContens";
+        return "member/list::addModalContens";
 
     }
 
     //新增會員
     @RequestMapping(value ="/member",produces = "application/json",method = RequestMethod.POST)
-    public String AddModal(@RequestBody MemberReq memberReq) throws IOException {
+    public String AddModal(@RequestBody MemberReq memberReq,Model model) throws IOException {
        System.out.println("**** "+memberReq.toString());
        memberService.create(memberReq);
-        //model.addAttribute("departments", departments);
-        //model.addAttribute("depts",departments);
-        return "redirect:/members";
+        List<MemberDto> memberDtoList = memberService.findAll();
+        model.addAttribute("members", memberDtoList);
+       return "member/list";
+        //return "redirect:/members.html";
+    }
+
+    @RequestMapping(value ="/toModifyMember/{id}",method = RequestMethod.GET)
+    public String toModifyModal(@PathVariable Integer id,Model model) throws IOException {
+        System.out.println("******** "+id.toString());
+        MemberDto memberDto = memberService.findOne(id);
+        List<Departemt> departments = departmentDao.findAll();
+        model.addAttribute("depts",departments);
+        model.addAttribute("memberDto",memberDto);
+        return "member/list::modifyModalContens";
 
     }
 }
