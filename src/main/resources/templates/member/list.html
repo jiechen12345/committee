@@ -92,11 +92,14 @@
                                 修改
                             </div>
                             <!--  <a href="#" th:href="@{/member/}+${member.id}" class="btn btn-sm btn-primary">修改</a> -->
-
-
-                            <button th:attr="del_uri=@{/member/}+${member.id}" class="btn btn-sm btn-danger deleteBtn">
+                            <div class="btn btn-sm btn-danger deleteBtn" data-toggle="modal"
+                                 th:onclick="'javascript:sendDeleteMember(\''+${member.id}+'\')'">
                                 刪除
-                            </button>
+                            </div>
+                            <!--
+                                                       <button th:attr="del_uri=@{/member/}+${member.id}" class="btn btn-sm btn-danger deleteBtn">
+                                                           刪除
+                                                       </button>-->
                         </td>
                         <!--/*@thymesVar id="member" type="com.tlg.dto.MemberDto"*/-->
                         <td th:text="${member.getName()}">1</td>
@@ -166,20 +169,23 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <div class="modal-body">
-
                     <form class="form-group">
+                        <input type="hidden" name="id_m" id="id_m" th:value="${memberDto!=null}?${memberDto.id}">
                         <label>姓名</label>
                         <!--/*@thymesVar id="name" type="com.tlg.dto.MemberDto"*/-->
-                        <input th:value="${memberDto!=null}?${memberDto.name}" type="text" name="name2" id="name2" class="form-control">
+                        <input th:value="${memberDto!=null}?${memberDto.name}" type="text" name="name_m" id="name_m"
+                               class="form-control">
                         <label>帳號</label>
-                        <input th:value="${memberDto!=null}?${memberDto.account}" type="text" name="account2" id="account2" class="form-control">
+                        <input th:value="${memberDto!=null}?${memberDto.account}" type="text" name="account_m"
+                               id="account_m" class="form-control">
                         <label>密碼</label>
-                        <input type="password" name="password3" id="password3" class="form-control">
+                        <input type="password" name="password_m" id="password_m" class="form-control">
                         <label>確認密碼</label>
-                        <input type="password" name="password4" id="password4" class="form-control">
+                        <input type="password" name="password2_m" id="password2_m" class="form-control">
                         <label>部門</label>
-                        <select  class="form-control" name="depId2" id="depId2">
-                            <option th:selected="${memberDto!=null}?${dept.id==memberDto.depId}" th:each="dept:${depts}" th:value="${dept.id}" th:text="${dept.depName}"></option>
+                        <select class="form-control" name="depId_m" id="depId_m">
+                            <option th:selected="${memberDto!=null}?${dept.id==memberDto.depId}" th:each="dept:${depts}"
+                                    th:value="${dept.id}" th:text="${dept.depName}"></option>
                         </select>
 
                         <div class="clearfix"></div>
@@ -188,7 +194,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-default btn-success" data-dismiss="modal"
-                            th:onclick="'javascript:sendAddMember()'">Save
+                            th:onclick="'javascript:sendModifyMember()'">Save
                     </button>
                 </div>
             </div>
@@ -228,7 +234,7 @@
         $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 type: 'GET',
-                url: "/toModifyMember/"+id,
+                url: "/toModifyMember/" + id,
                 success: function (data) {
                     $('#modifyPanelHolder').html(data);
                     $('#modifyPanel').modal('show');
@@ -262,11 +268,47 @@
         )
     }
 
+    function sendModifyMember() {
+        var id = $('#id_m').val();
+        var name = $('#name_m').val();
+        var account = $('#account_m').val();
+        var password = $('#password_m').val();
+        var password2 = $('#password2_m').val();
+        var depId = $('#depId_m').val();
 
-    $(".deleteBtn").click(function () {
-        $("#deletememberForm").attr("action", $(this).attr("del_uri")).submit();
+        if (password != password2) {
+            alert("密碼確認錯誤");
+            return;
+        }
+        $.ajax({
+                contentType: 'application/json; charset=UTF-8',
+                type: 'PUT',
+                url: "/member",
+                data: JSON.stringify({"id": id, "name": name, "account": account, "password": password, "depId": depId}),
+                complete: location.reload(),
+                success: function (data) {
+                    alert(data);
+                    location.reload();
+                }
+            }
+        )
+    }
 
-    })
+    function sendDeleteMember(id) {
+        alert("要刪除的id 是 " + id);
+        $.ajax({
+                contentType: 'application/json; charset=UTF-8',
+                type: 'DELETE',
+                url: "/member/" + id,
+                complete: location.reload(),
+                success: function (data) {
+                    alert(data);
+                    location.reload();
+                }
+            }
+        )
+    }
+
 </script>
 
 </body>

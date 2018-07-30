@@ -48,6 +48,24 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberDao.findById(id).get();
         return getMemberDto(member);
     }
+
+    @Override
+    public void update(MemberReq memberReq) {
+        Member member = memberDao.findById(Integer.parseInt(memberReq.getId())).get();
+        member.setName(memberReq.getName());
+        member.setAccount(memberReq.getAccount());
+        member.setPassword(memberReq.getPassword());
+        Departemt departemt = departmentDao.findById(Integer.parseInt(memberReq.getDepId())).get();
+        member.setDepartemt(departemt);
+        memberDao.save(member);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Member member = memberDao.findById(id).get();
+        memberDao.delete(member);
+    }
+
     private MemberDto getMemberDto(Member member) {
         MemberDto memberDto = new MemberDto();
         memberDto.setId(member.getId().toString());
