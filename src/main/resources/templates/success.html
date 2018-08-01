@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>success</title>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>-->
+    <script th:src="@{/ckeditor/ckeditor.js}"></script>
+    <script th:src="@{/ckfinder/ckfinder.js}"></script>
 </head>
 <body>
-<h1>success</h1>
+<div class="container">
+    <div><p >3333</p>
+    </div>
 
+    <form id="form" th:name="form" method="post" >
 
+   <textarea cols="80" class="ckeditor" id="editor1" th:name="comments"  rows="10">
+	</textarea>
+        <input type="submit" name="save"/>
+    </form>
+</div>
 </body>
 </html>
