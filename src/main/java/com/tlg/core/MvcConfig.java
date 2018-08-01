@@ -25,6 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/main.html").setViewName("websiteMgt");
         registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/ok.html").setViewName("success");
     }
 
     @Override
@@ -100,16 +101,18 @@ public class MvcConfig implements WebMvcConfigurer {
     //註冊攔截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-       registry.addInterceptor(new LoginHendlerInterceptor()).addPathPatterns("/**")
-               .excludePathPatterns("/index.html", "/", "/api/login")
-               .excludePathPatterns("/css/**")
-               .excludePathPatterns("/js/**")
-               .excludePathPatterns("/font/**")
-               .excludePathPatterns("/img/**")
-               .excludePathPatterns("/**/*.map");
-//               .excludePathPatterns("/**/*.map")
-//               .excludePathPatterns("/**/*.js")
-//               .excludePathPatterns("/**/*.png")
+
+//        registry.addInterceptor(new LoginHendlerInterceptor()).addPathPatterns("/**")
+//               .excludePathPatterns("/index.html", "/", "/api/login")
+//               .excludePathPatterns("/css/**")
+//               .excludePathPatterns("/js/**")
+//               .excludePathPatterns("/font/**")
+//               .excludePathPatterns("/img/**")
+//               .excludePathPatterns("/**/*.map");
+////               .excludePathPatterns("/**/*.map")
+////               .excludePathPatterns("/**/*.js")
+////               .excludePathPatterns("/**/*.png")
+
 
     }
 

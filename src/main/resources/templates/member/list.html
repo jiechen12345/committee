@@ -223,7 +223,7 @@
                 success: function (data) {
                     $('#addPanelHolder').html(data);
                     $('#addPanel').modal('show');
-                }
+                },
             }
         )
     }
@@ -285,10 +285,16 @@
                 type: 'PUT',
                 url: "/member",
                 data: JSON.stringify({"id": id, "name": name, "account": account, "password": password, "depId": depId}),
+                async: true,
                 complete: location.reload(),
                 success: function (data) {
                     alert(data);
                     location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseText);
+                    alert(thrownError.toString());
+
                 }
             }
         )

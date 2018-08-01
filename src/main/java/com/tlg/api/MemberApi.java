@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Created by JieChen on 2018/7/24.
  */
+@CrossOrigin(origins = "*")
 @Controller
 public class MemberApi {
     Logger LOGGER = LoggerFactory.getLogger(MemberApi.class);
@@ -38,18 +39,18 @@ public class MemberApi {
 
     }
 
-    @GetMapping("/toAddMember")
+    @RequestMapping(value = "/toAddMember", method = RequestMethod.GET)
     public String toAddModal(Model model) throws IOException {
-       List<Departemt> departments = departmentDao.findAll();
-        model.addAttribute("depts",departments);
+        List<Departemt> departments = departmentDao.findAll();
+        model.addAttribute("depts", departments);
         return "member/list::addModalContens";
 
     }
 
     //新增會員
-    @RequestMapping(value ="/member",produces = "application/json",method = RequestMethod.POST)
-    public String AddModal(@RequestBody MemberReq memberReq,Model model) throws IOException {
-        LOGGER.info("**** "+memberReq.toString());
+    @RequestMapping(value = "/member", produces = "application/json", method = RequestMethod.POST)
+    public String AddModal(@RequestBody MemberReq memberReq, Model model) throws IOException {
+        LOGGER.info("**** " + memberReq.toString());
         memberService.create(memberReq);
         List<MemberDto> memberDtoList = memberService.findAll();
         model.addAttribute("members", memberDtoList);
@@ -57,21 +58,21 @@ public class MemberApi {
         //return "redirect:/members.html";
     }
 
-    @RequestMapping(value ="/toModifyMember/{id}",method = RequestMethod.GET)
-    public String toModifyModal(@PathVariable Integer id,Model model) throws IOException {
-        LOGGER.info("******** "+id.toString());
+    @RequestMapping(value = "/toModifyMember/{id}", method = RequestMethod.GET)
+    public String toModifyModal(@PathVariable Integer id, Model model) throws IOException {
+        LOGGER.info("******** " + id.toString());
         MemberDto memberDto = memberService.findOne(id);
         List<Departemt> departments = departmentDao.findAll();
-        model.addAttribute("depts",departments);
-        model.addAttribute("memberDto",memberDto);
+        model.addAttribute("depts", departments);
+        model.addAttribute("memberDto", memberDto);
         return "member/list::modifyModalContens";
 
     }
 
     //修改會員
-    @RequestMapping(value ="/member",produces = "application/json",method = RequestMethod.PUT)
-    public String ｍodifyMember(@RequestBody MemberReq memberReq,Model model) throws IOException {
-        LOGGER.info("***** "+memberReq.toString());
+    @RequestMapping(value = "/member", produces = "application/json", method = RequestMethod.PUT)
+    public String modifyMember(@RequestBody MemberReq memberReq, Model model) throws IOException {
+        LOGGER.info("***** " + memberReq.toString());
         memberService.update(memberReq);
         List<MemberDto> memberDtoList = memberService.findAll();
         model.addAttribute("members", memberDtoList);
