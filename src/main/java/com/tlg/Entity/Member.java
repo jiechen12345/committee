@@ -1,9 +1,7 @@
 package com.tlg.Entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-
 import javax.persistence.*;
+
 
 /**
  * Created by JieChen on 2018/7/24.
@@ -14,8 +12,17 @@ public class Member {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    /**
+     * 帳號
+     */
     private String account;
+    /**
+     * 密碼
+     */
     private String password;
+    /**
+     * 姓名
+     */
     private String name;
     @ManyToOne(targetEntity = Departemt.class)
     private Departemt departemt;
@@ -70,4 +77,5 @@ public class Member {
                 ", departemt=" + departemt +
                 '}';
     }
+
 }

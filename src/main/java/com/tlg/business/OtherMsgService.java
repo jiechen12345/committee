@@ -1,0 +1,16 @@
+package com.tlg.business;
+
+
+import com.tlg.dto.MemberDto;
+import com.tlg.dto.OtherMsgDto;
+import com.tlg.request.OtherMsgReq;
+
+import java.util.List;
+
+/**
+ * Created by jiechen on 2018/8/2.
+ */
+public interface OtherMsgService {
+    List<OtherMsgDto> findAll();
+    void create(OtherMsgReq otherMsgReq);
+}
