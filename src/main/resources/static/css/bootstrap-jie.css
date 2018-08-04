@@ -1,0 +1,11 @@
+.form-control {
+    width:92%;
+    display:inline;
+}
+.editor-label {
+    margin: 0px 0 0 0;
+    height: 100px;
+    display: inline-block;
+    min-width: 70px;
+    position: relative;
+}

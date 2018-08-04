@@ -1,11 +1,13 @@
 package com.tlg.Entity;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by jiechen on 2018/8/2.
  */
+@Entity
 public class OtherMsg {
     @Id
     private Integer id;
@@ -38,6 +40,14 @@ public class OtherMsg {
      * 最後更新時間
      */
     private Date updatedAt;
+    /**
+     * 新增人員
+     */
+    private String createdBy;
+    /**
+     * 新增時間
+     */
+    private Date createdAt;
 
     public Integer getId() {
         return id;
@@ -102,6 +112,14 @@ public class OtherMsg {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Override

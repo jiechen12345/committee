@@ -21,12 +21,18 @@ public class OtherMsgApi {
     @Autowired
     private OtherMsgService otherMsgService;
 
-    //查詢他訊息
-    @GetMapping("/members")
+    //查詢其他訊息
+    @GetMapping("/otherMsgs")
     public String list(Model model) {
-        List<OtherMsgDto> memberDtoList = otherMsgService.findAll();
-        model.addAttribute("members", memberDtoList);
-        return "member/list";
+        List<OtherMsgDto> otherMsgDtoList = otherMsgService.findAll();
+        model.addAttribute("otherMsgs", otherMsgDtoList);
+        return "otherMsg/otherMsgList";
+
+    }
+    //toAddOtherMsg
+    @GetMapping("/otherMsg")
+    public String toAddOtherMsg(Model model) {
+        return "otherMsg/addOtherMsg";
 
     }
 

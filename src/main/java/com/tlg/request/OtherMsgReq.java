@@ -37,7 +37,14 @@ public class OtherMsgReq {
      * 最後更新時間
      */
     private Date updatedAt;
-
+    /**
+     * 新增人員
+     */
+    private String createdBy;
+    /**
+     * 新增時間
+     */
+    private Date createdAt;
     public Integer getId() {
         return id;
     }
@@ -103,10 +110,26 @@ public class OtherMsgReq {
         this.updatedAt = updatedAt;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "OtherMsgReq{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", ctr='" + ctr + '\'' +
                 ", editor='" + editor + '\'' +
@@ -114,6 +137,8 @@ public class OtherMsgReq {
                 ", offShelfDate=" + offShelfDate +
                 ", updatedBy='" + updatedBy + '\'' +
                 ", updatedAt=" + updatedAt +
+                ", createdBy='" + createdBy + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

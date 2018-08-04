@@ -1,10 +1,8 @@
 package com.tlg.business.impl;
 
-import com.tlg.Entity.Member;
 import com.tlg.Entity.OtherMsg;
 import com.tlg.business.OtherMsgService;
 import com.tlg.dao.OtherMsgDao;
-import com.tlg.dto.MemberDto;
 import com.tlg.dto.OtherMsgDto;
 import com.tlg.request.OtherMsgReq;
 import org.springframework.beans.factory.annotation.Autowired;

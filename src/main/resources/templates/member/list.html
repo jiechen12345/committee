@@ -9,7 +9,7 @@
     <meta name="author" content=""/>
 
 
-    <title>member list</title>
+    <title>會員帳號管理</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -17,29 +17,7 @@
     <!-- Custom styles for this tmemberlate -->
     <link href="/css/dashboard.css" rel="stylesheet"/>
     <link href="/css/bootstrap-table.css" rel="stylesheet">
-    <style type="text/css">/* Chart.js */
-    @-webkit-keyframes chartjs-render-animation {
-        from {
-            opacity: 0.99
-        }
-        to {
-            opacity: 1
-        }
-    }
 
-    @keyframes chartjs-render-animation {
-        from {
-            opacity: 0.99
-        }
-        to {
-            opacity: 1
-        }
-    }
-
-    .chartjs-render-monitor {
-        -webkit-animation: chartjs-render-animation 0.001s;
-        animation: chartjs-render-animation 0.001s;
-    }</style>
 </head>
 
 <body th:inline="text">
@@ -85,7 +63,7 @@
                     <tbody id="list-itens">
 
                     <tr th:each="member:${members}">
-                        <td style="width:140px; text-align: center">
+                        <td style="width:15%" align="center">
                             <!--thymeleaf 傳参到js onclick事件中-->
                             <div class="btn btn-sm btn-primary" data-toggle="modal"
                                  th:onclick="'javascript:openModifyModal(\''+${member.id}+'\')'">
@@ -112,9 +90,6 @@
                 </table>
             </div>
         </main>
-        <form id="deletememberForm" method="post">
-            <input type="hidden" name="_method" value="delete">
-        </form>
     </div>
 </div>
 <!-- *****新增form *****-->
@@ -208,13 +183,11 @@
 <script src="/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-
 <!-- Icons -->
-<script src="/js/feather.min.js"></script>
+<script src="./Dashboard_files/feather.min.js" th:src="@{/js/feather.min.js}"></script>
 <script>
     feather.replace()
 </script>
-
 <script>
     function openAddModal() {
         $.ajax({
