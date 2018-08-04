@@ -45,6 +45,10 @@ public class OtherMsgReq {
      * 新增時間
      */
     private Date createdAt;
+    /**
+     * session
+     */
+    private String loginUser;
     public Integer getId() {
         return id;
     }
@@ -126,6 +130,14 @@ public class OtherMsgReq {
         this.createdAt = createdAt;
     }
 
+    public String getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(String loginUser) {
+        this.loginUser = loginUser;
+    }
+
     @Override
     public String toString() {
         return "OtherMsgReq{" +
@@ -139,6 +151,7 @@ public class OtherMsgReq {
                 ", updatedAt=" + updatedAt +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdAt=" + createdAt +
+                ", loginUser='" + loginUser + '\'' +
                 '}';
     }
 }

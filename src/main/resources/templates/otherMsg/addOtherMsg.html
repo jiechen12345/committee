@@ -76,11 +76,10 @@
                     <label>新增訊息：</label>
                 </div>
                     <p   style="display:inline; font-size:120%" >
-                        [[${msg!=null}?${msg.createdBy}+' '+123:'123']]
+                        [[${msg!=null}?${msg.createdBy}+' '+123:'數金資訊二科 OOO']]
                     </p>
-
-
                 <div >
+                    <input type="hidden" name="loginUser" id="loginUser" th:value="${session.loginUser}">
                     <button type="submit" class="btn btn-success" th:text="${msg!=null}?'修改':'新增'">save</button>
                 </div>
             </form>

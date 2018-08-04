@@ -38,8 +38,8 @@ public class OtherMsgApi {
 
     //新增其他訊息
     @PostMapping("/otherMsg")
-    public void AddModal(OtherMsgReq otherMsgReq) throws IOException {
+    public String AddModal(OtherMsgReq otherMsgReq) throws IOException {
         System.out.println(otherMsgReq.toString());
-        //return "redirect:/members.html";
+        return "redirect:/otherMsgs";
     }
 }
