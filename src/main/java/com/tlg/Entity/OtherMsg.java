@@ -1,7 +1,7 @@
 package com.tlg.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.awt.print.Book;
 import java.util.Date;
 
 /**
@@ -10,6 +10,7 @@ import java.util.Date;
 @Entity
 public class OtherMsg {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     /**
      * 標題
@@ -19,7 +20,7 @@ public class OtherMsg {
     /**
      * 點擊數
      */
-    private String ctr;
+    private Integer ctr;
     /**
      * editor內容
      */
@@ -49,6 +50,7 @@ public class OtherMsg {
      */
     private Date createdAt;
 
+
     public Integer getId() {
         return id;
     }
@@ -74,11 +76,11 @@ public class OtherMsg {
     }
 
 
-    public String getCtr() {
+    public Integer getCtr() {
         return ctr;
     }
 
-    public void setCtr(String ctr) {
+    public void setCtr(Integer ctr) {
         this.ctr = ctr;
     }
 
@@ -120,6 +122,14 @@ public class OtherMsg {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

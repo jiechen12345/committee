@@ -148,13 +148,13 @@
                         <input type="hidden" name="id_m" id="id_m" th:value="${memberDto!=null}?${memberDto.id}">
                         <label>姓名</label>
                         <!--/*@thymesVar id="name" type="com.tlg.dto.MemberDto"*/-->
-                        <input th:value="${memberDto!=null}?${memberDto.name}" type="text" name="name_m" id="name_m"
+                        <input required="required" th:value="${memberDto!=null}?${memberDto.name}" type="text" name="name_m" id="name_m"
                                class="form-control">
                         <label>帳號</label>
-                        <input th:value="${memberDto!=null}?${memberDto.account}" type="text" name="account_m"
+                        <input required="required" th:value="${memberDto!=null}?${memberDto.account}" type="text" name="account_m"
                                id="account_m" class="form-control">
                         <label>密碼</label>
-                        <input type="password" name="password_m" id="password_m" class="form-control">
+                        <input required="required" type="password" name="password_m" id="password_m" class="form-control">
                         <label>確認密碼</label>
                         <input type="password" name="password2_m" id="password2_m" class="form-control">
                         <label>部門</label>

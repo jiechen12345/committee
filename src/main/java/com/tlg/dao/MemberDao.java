@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
  * Created by JieChen on 2018/7/24.
  */
 @Repository
- public interface MemberDao extends JpaRepository<Member,Integer>, JpaSpecificationExecutor<Member> {
-    }
+public interface MemberDao extends JpaRepository<Member, Integer>, JpaSpecificationExecutor<Member> {
+    Member findByAccount(String account);
+}

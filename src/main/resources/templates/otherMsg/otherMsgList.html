@@ -64,8 +64,8 @@
                         <!--/*@thymesVar id="otherMsg" type="com.tlg.dto.OtherMsgDto"*/-->
 
                         <td style="width:10%" align="center">
-                            <a  href="#"  class="btn btn-sm btn-primary">编辑</a>
-                            <button  class="btn btn-sm btn-danger deleteBtn">删除</button>
+                            <a  href="#" th:href="@{/otherMsg/}+${otherMsg.id}" class="btn btn-sm btn-primary">修改</a>
+                            <button  class="btn btn-sm btn-danger deleteBtn">刪除</button>
                         </td>
                         <td style="width:20%" th:text="${otherMsg.title}">1</td>
                         <td style="width:5%" th:text="${otherMsg.ctr}" align="right">1</td>

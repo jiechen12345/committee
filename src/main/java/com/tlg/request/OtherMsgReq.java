@@ -16,7 +16,7 @@ public class OtherMsgReq {
     /**
      * 點擊數
      */
-    private String ctr;
+    private Integer ctr;
     /**
      * editor內容
      */
@@ -74,11 +74,11 @@ public class OtherMsgReq {
     }
 
 
-    public String getCtr() {
+    public Integer getCtr() {
         return ctr;
     }
 
-    public void setCtr(String ctr) {
+    public void setCtr(Integer ctr) {
         this.ctr = ctr;
     }
 

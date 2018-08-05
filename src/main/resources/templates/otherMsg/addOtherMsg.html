@@ -46,12 +46,12 @@
                 <div class="form-group">
                     <label for="title">訊息標題：</label>
                     <!--/*@thymesVar id="msg" type="com.tlg.dto.OtherMsgDto"*/-->
-                    <input type="text" class="form-control" id="title" name="title" placeholder="訊息標題"
+                    <input type="text" required="required" class="form-control" id="title" name="title" placeholder="訊息標題"
                            th:value="${msg!=null}?${msg.title}">
                 </div>
                 <!-- Email -->
                 <div class="form-group">
-                    <textarea cols="20" class="ckeditor" id="editor1" name="editor" rows="5">
+                    <textarea cols="20" class="ckeditor" id="editor1" name="editor" rows="5" th:value="${msg!=null}?${msg.editor}">
 	                </textarea>
                 </div>
                 <!--gender-->
@@ -64,20 +64,26 @@
                 <div class="form-group">
                     <label>上版日期：</label>
 
-                    <input type="text" readonly="true" class="form-control" id='onShelfDate' name="onShelfDate"
+                    <input type="text" required="required" readonly="true" class="form-control" id='onShelfDate' name="onShelfDate"
                            th:value="${msg!=null}?${#dates.format(msg.onShelfDate,'yyyy-MM-dd')}">
                 </div>
                 <div class="form-group">
                     <label>下版日期：</label>
-                    <input type="text" readonly="true" class="form-control" id="offShelfDate" name="offShelfDate"
+                    <input type="text" required="required" readonly="true" class="form-control" id="offShelfDate" name="offShelfDate"
                            th:value="${msg!=null}?${#dates.format(msg.offShelfDate,'yyyy-MM-dd')}">
                 </div>
                 <div class="editor-label">
                     <label>新增訊息：</label>
                 </div>
-                    <p   style="display:inline; font-size:120%" >
+                    <p   style="display:inline; font-size:110%" >
                         [[${msg!=null}?${msg.createdBy}+' '+123:'數金資訊二科 OOO']]
-                    </p>
+                    </p></form></br>
+                <div class="editor-label">
+                    <label>修改訊息：</label>
+                </div>
+                <p   style="display:inline; font-size:110%" >
+                    [[${msg!=null}?${msg.createdBy}+' '+123:'數金資訊二科 OOO']]
+                </p>
                 <div >
                     <input type="hidden" name="loginUser" id="loginUser" th:value="${session.loginUser}">
                     <button type="submit" class="btn btn-success" th:text="${msg!=null}?'修改':'新增'">save</button>
@@ -90,13 +96,13 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./js/jquery-3.3.1.slim.min.js"
-        crossorigin="anonymous" charset="UTF-8"></script>
+<script src="/js/jquery-3.3.1.slim.min.js"
+        crossorigin="anonymous"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.min.js"></script>
-<script src="/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script src="/js/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.js"></script>
+<script src="/js/bootstrap-datetimepicker.zh-TW.js" ></script>
 
 <!-- Icons -->
 <script src="/js/feather.min.js"></script>
