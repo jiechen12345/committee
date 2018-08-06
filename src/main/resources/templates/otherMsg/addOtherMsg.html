@@ -34,10 +34,8 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 " style="align-content: center">
 
             <form class="form-horizontal" th:action="@{/otherMsg}" method="post">
-                <!--发送put请求-->
-                <!--1.SpringMVC配置HiddenHttpMethodFilter
-                    2.页面创建一个post表单
-                    3.创建一个 input name_method 值就是我们请求的方式-->
+
+                <!--  建一个 input name "_method" 值请求的方式 springMVC的規範-->
                 <input type="hidden" name="_method" value="put" th:if="${msg!=null}">
 
                 <input type="hidden" name="id" th:value="${msg.id}" th:if="${msg!=null}">
@@ -46,12 +44,14 @@
                 <div class="form-group">
                     <label for="title">訊息標題：</label>
                     <!--/*@thymesVar id="msg" type="com.tlg.dto.OtherMsgDto"*/-->
-                    <input type="text" required="required" class="form-control" id="title" name="title" placeholder="訊息標題"
+                    <input type="text" required="required" class="form-control" id="title" name="title"
+                           placeholder="訊息標題"
                            th:value="${msg!=null}?${msg.title}">
                 </div>
                 <!-- Email -->
                 <div class="form-group">
-                    <textarea cols="20" class="ckeditor" id="editor1" name="editor" rows="5" th:value="${msg!=null}?${msg.editor}">
+                    <textarea cols="20" class="ckeditor" id="editor1" name="editor" rows="5">
+                        [[${msg!=null}?${msg.editor}]]
 	                </textarea>
                 </div>
                 <!--gender-->
@@ -64,27 +64,34 @@
                 <div class="form-group">
                     <label>上版日期：</label>
 
-                    <input type="text" required="required" readonly="true" class="form-control" id='onShelfDate' name="onShelfDate"
+                    <input type="text" required="required" readonly="true" class="form-control" id='onShelfDate'
+                           name="onShelfDate"
                            th:value="${msg!=null}?${#dates.format(msg.onShelfDate,'yyyy-MM-dd')}">
                 </div>
                 <div class="form-group">
                     <label>下版日期：</label>
-                    <input type="text" required="required" readonly="true" class="form-control" id="offShelfDate" name="offShelfDate"
+                    <input type="text" required="required" readonly="true" class="form-control" id="offShelfDate"
+                           name="offShelfDate"
                            th:value="${msg!=null}?${#dates.format(msg.offShelfDate,'yyyy-MM-dd')}">
                 </div>
                 <div class="editor-label">
                     <label>新增訊息：</label>
+
+                    <p style="display:inline; font-size:110%">
+                        [[${msg!=null}?${msg.createdBy}+' '+OO:'數金資訊二科 OOO']]
+                    </p>
                 </div>
-                    <p   style="display:inline; font-size:110%" >
-                        [[${msg!=null}?${msg.createdBy}+' '+123:'數金資訊二科 OOO']]
-                    </p></form></br>
+                </br>
                 <div class="editor-label">
                     <label>修改訊息：</label>
+
+                    <p style="display:inline; font-size:110%">
+                        [[${msg!=null}?${msg.createdBy}+' '+OO:'數金資訊二科 OOO']]
+                    </p>
                 </div>
-                <p   style="display:inline; font-size:110%" >
-                    [[${msg!=null}?${msg.createdBy}+' '+123:'數金資訊二科 OOO']]
-                </p>
-                <div >
+
+
+                <div>
                     <input type="hidden" name="loginUser" id="loginUser" th:value="${session.loginUser}">
                     <button type="submit" class="btn btn-success" th:text="${msg!=null}?'修改':'新增'">save</button>
                 </div>
@@ -102,7 +109,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
-<script src="/js/bootstrap-datetimepicker.zh-TW.js" ></script>
+<script src="/js/bootstrap-datetimepicker.zh-TW.js"></script>
 
 <!-- Icons -->
 <script src="/js/feather.min.js"></script>

@@ -15,4 +15,5 @@ public interface OtherMsgService {
     void create(OtherMsgReq otherMsgReq);
     OtherMsgDto findOne(Integer id);
     void update(OtherMsgReq otherMsgReq);
+    void delete(Integer id);
 }

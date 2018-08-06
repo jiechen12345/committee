@@ -1,15 +1,16 @@
 package com.tlg.api;
 
+import com.tlg.Entity.OtherMsg;
 import com.tlg.business.OtherMsgService;
 import com.tlg.dto.MemberDto;
 import com.tlg.dto.OtherMsgDto;
 import com.tlg.request.OtherMsgReq;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @Controller
 public class OtherMsgApi {
+    Logger LOGGER = LoggerFactory.getLogger(OtherMsgApi.class);
     @Autowired
     private OtherMsgService otherMsgService;
 
@@ -51,5 +53,16 @@ public class OtherMsgApi {
         OtherMsgDto otherMsgDto = otherMsgService.findOne(id);
         model.addAttribute("msg", otherMsgDto);
         return "otherMsg/addOtherMsg";
+    }
+    @PutMapping("/otherMsg")
+    public String toModifyOtherMsg(OtherMsgReq otherMsgReq ) throws IOException {
+        LOGGER.info("***** " + otherMsgReq.toString());
+        otherMsgService.update(otherMsgReq);
+        return "redirect:/otherMsgs";
+    }
+    @RequestMapping(value = "/otherMsg/{id}", method = RequestMethod.DELETE)
+    public String deleteMember(@PathVariable Integer id) {
+        otherMsgService.delete(id);
+        return "redirect:/otherMsgs";
     }
 }

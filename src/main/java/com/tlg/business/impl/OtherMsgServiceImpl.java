@@ -56,8 +56,21 @@ public class OtherMsgServiceImpl implements OtherMsgService {
 
     @Override
     public void update(OtherMsgReq otherMsgReq) {
-
+        OtherMsg otherMsg = otherMsgDao.findById(otherMsgReq.getId()).get();
+        otherMsg.setTitle(otherMsgReq.getTitle());
+        otherMsg.setEditor(otherMsgReq.getEditor());
+        otherMsg.setOnShelfDate(otherMsgReq.getOnShelfDate());
+        otherMsg.setOffShelfDate(otherMsgReq.getOffShelfDate());
+        otherMsg.setUpdatedBy(otherMsgReq.getLoginUser());
+        otherMsg.setUpdatedAt(new Date());
+        otherMsgDao.save(otherMsg);
     }
+    @Override
+    public void delete(Integer id) {
+        OtherMsg otherMsg = otherMsgDao.findById(id).get();
+        otherMsgDao.delete(otherMsg);
+    }
+
 
     private OtherMsgDto getOtherMsgDto(OtherMsg otherMsg) {
         OtherMsgDto otherMsgDto = new OtherMsgDto();
