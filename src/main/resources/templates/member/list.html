@@ -89,6 +89,10 @@
                     </tbody>
                 </table>
             </div>
+            <input type="text" name="page" id="page">頁
+            <div class="btn btn-default btn-success btn-md" data-toggle="modal"
+                 th:onclick="'javascript:changePage()'">跳頁
+            </div>
         </main>
     </div>
 </div>
@@ -148,13 +152,16 @@
                         <input type="hidden" name="id_m" id="id_m" th:value="${memberDto!=null}?${memberDto.id}">
                         <label>姓名</label>
                         <!--/*@thymesVar id="name" type="com.tlg.dto.MemberDto"*/-->
-                        <input required="required" th:value="${memberDto!=null}?${memberDto.name}" type="text" name="name_m" id="name_m"
+                        <input required="required" th:value="${memberDto!=null}?${memberDto.name}" type="text"
+                               name="name_m" id="name_m"
                                class="form-control">
                         <label>帳號</label>
-                        <input required="required" th:value="${memberDto!=null}?${memberDto.account}" type="text" name="account_m"
+                        <input required="required" th:value="${memberDto!=null}?${memberDto.account}" type="text"
+                               name="account_m"
                                id="account_m" class="form-control">
                         <label>密碼</label>
-                        <input required="required" type="password" name="password_m" id="password_m" class="form-control">
+                        <input required="required" type="password" name="password_m" id="password_m"
+                               class="form-control">
                         <label>確認密碼</label>
                         <input type="password" name="password2_m" id="password2_m" class="form-control">
                         <label>部門</label>
@@ -189,6 +196,22 @@
     feather.replace()
 </script>
 <script>
+    function changePage() {
+        var page = $('#page').val();
+        $.ajax({
+                contentType: 'application/json; charset=UTF-8',
+                type: 'GET',
+                url: "/members",
+                data: JSON.stringify({"page": page}),
+                complete: location.reload(),
+                success: function (data) {
+                    alert("success");
+                    location.reload();
+                },
+            }
+        )
+    }
+
     function openAddModal() {
         $.ajax({
                 type: 'GET',
@@ -202,7 +225,7 @@
     }
 
     function openModifyModal(id) {
-        alert("id 是 " + id);
+        //alert("id 是 " + id);
         var memberId = id;
         $.ajax({
                 contentType: 'application/json; charset=UTF-8',
@@ -274,7 +297,7 @@
     }
 
     function sendDeleteMember(id) {
-        alert("要刪除的id 是 " + id);
+        //alert("要刪除的id 是 " + id);
         $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 type: 'DELETE',

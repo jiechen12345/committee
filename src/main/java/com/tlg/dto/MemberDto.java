@@ -8,12 +8,23 @@ import javax.persistence.ManyToOne;
  * Created by jiechen on 2018/7/26.
  */
 public class MemberDto {
-    private String id;
+    private Integer id;
     private String account;
     private String password;
     private String name;
     private Integer depId;
     private String depName;
+
+    public MemberDto() {
+    }
+
+    public MemberDto(Integer id, String account, String password, String name, String depName) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.depName = depName;
+    }
 
     public Integer getDepId() {
         return depId;
@@ -23,11 +34,11 @@ public class MemberDto {
         this.depId = depId;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

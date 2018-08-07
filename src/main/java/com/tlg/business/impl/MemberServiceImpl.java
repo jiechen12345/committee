@@ -6,12 +6,21 @@ import com.tlg.business.MemberService;
 import com.tlg.dao.DepartmentDao;
 import com.tlg.dao.MemberDao;
 import com.tlg.dto.MemberDto;
+import com.tlg.dto.MemberPage;
 import com.tlg.request.MemberReq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Predicate;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by jiechen on 2018/7/26.
@@ -25,10 +34,34 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberDto> findAll() {
-        List<MemberDto> memberDtoList = memberDao.findAll().stream()
+        List<MemberDto> memberDtoList = memberDao.findAll( PageRequest.of(0,5)).stream()
                 .map(this::getMemberDto)
                 .collect(Collectors.toList());
         return memberDtoList;
+    }
+
+    @Override
+    public MemberPage getAllForm(Integer page) {
+      /*
+        Page<Member> p = memberDao.findAll((root, query, cb) -> {
+            query.orderBy(cb.desc(root.get("id")));
+            return cb.equal(root.get("name"), "1");
+        }, new PageRequest(page - 1, 10));
+        MemberPage result = new MemberPage();
+        result.setContents(p.getContent()
+                .stream()
+                .map(it -> new MemberDto(
+                                it.getId(),
+                                it.getAccount(),
+                                it.getPassword(),
+                                it.getName(),
+                                it.getDepartemt().getDepName()
+
+                        )
+                )
+                .collect(toList()));
+                */
+        return null;
     }
 
     @Override
@@ -49,6 +82,7 @@ public class MemberServiceImpl implements MemberService {
         return getMemberDto(member);
     }
 
+
     @Override
     public void update(MemberReq memberReq) {
         Member member = memberDao.findById(Integer.parseInt(memberReq.getId())).get();
@@ -68,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 
     private MemberDto getMemberDto(Member member) {
         MemberDto memberDto = new MemberDto();
-        memberDto.setId(member.getId().toString());
+        memberDto.setId(member.getId());
         memberDto.setAccount(member.getAccount());
         memberDto.setPassword(member.getPassword());
         memberDto.setName(member.getName());

@@ -1,6 +1,7 @@
 package com.tlg.business;
 
 import com.tlg.dto.MemberDto;
+import com.tlg.dto.MemberPage;
 import com.tlg.request.MemberReq;
 
 import java.util.List;
@@ -10,8 +11,14 @@ import java.util.List;
  */
 public interface MemberService {
     List<MemberDto> findAll();
+
     MemberDto findOne(Integer id);
+
+    MemberPage getAllForm(Integer page);
+
     void create(MemberReq memberReq);
+
     void update(MemberReq memberReq);
+
     void delete(Integer id);
 }
