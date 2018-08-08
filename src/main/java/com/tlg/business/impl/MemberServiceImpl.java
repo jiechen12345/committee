@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
         Page<Member> p = memberDao.findAll((root, query, cb) -> {
             query.orderBy(cb.asc(root.get("id")));
             return cb.and();
-        }, PageRequest.of(page - 1, 2));
+        }, PageRequest.of(page - 1, 5));
 
         MemberPage result = new MemberPage();
         result.setContents(p.getContent()
@@ -64,6 +64,7 @@ public class MemberServiceImpl implements MemberService {
                 .collect(toList()));
         result.setCurrentPage(page);
         result.setTotalPages(p.getTotalPages());
+        result.setCount(p.getTotalElements());
         return result;
     }
 

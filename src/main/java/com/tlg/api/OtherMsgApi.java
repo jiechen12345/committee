@@ -55,7 +55,7 @@ public class OtherMsgApi {
         return "otherMsg/addOtherMsg";
     }
     @PutMapping("/otherMsg")
-    public String toModifyOtherMsg(OtherMsgReq otherMsgReq ) throws IOException {
+    public String ModifyOtherMsg(OtherMsgReq otherMsgReq ) throws IOException {
         LOGGER.info("***** " + otherMsgReq.toString());
         otherMsgService.update(otherMsgReq);
         return "redirect:/otherMsgs";

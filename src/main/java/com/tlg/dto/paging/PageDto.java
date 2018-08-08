@@ -10,6 +10,7 @@ public abstract class PageDto<T> {
 
     private int currentPage = 1;
     private int totalPages = 1;
+    private Long count = 1L;
     private List<T> contents = new LinkedList<>();
 
     public int getCurrentPage() {
@@ -34,5 +35,13 @@ public abstract class PageDto<T> {
 
     public void setContents(List<T> contents) {
         this.contents = contents;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 }

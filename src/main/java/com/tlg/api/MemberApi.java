@@ -9,14 +9,11 @@ import com.tlg.request.MemberReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -33,24 +30,27 @@ public class MemberApi {
     private MemberService memberService;
 
 
-        //查詢會員列表
-        @GetMapping("/members2")
-        public String list(@RequestParam(required = false, defaultValue = "1")Integer page, Model model) {
-            List<MemberDto> memberDtoList = memberService.findAll();
-            model.addAttribute("members", memberDtoList);
-            model.addAttribute("indexPage", page);
-            return "member/list";
-
-        }
-
-    //查詢會員列表(暫無條件)
+    //查詢會員列表
     @GetMapping("/members")
-    public String getAllForms(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
+    public String list( Model model) {
+        MemberPage memberPage = memberService.getAllForm(1);
+        model.addAttribute("members", memberPage.getContents());
+        model.addAttribute("indexPage", memberPage.getCurrentPage());
+        model.addAttribute("totalPages", memberPage.getTotalPages());
+        model.addAttribute("count", memberPage.getCount());
+        return "member/list";
+
+    }
+
+    //查詢分頁會員列表(暫無條件)
+    @GetMapping("/members/{page}")
+    public String getAllForms(@PathVariable(required = false) Integer page, Model model) {
         MemberPage memberPage = memberService.getAllForm(page);
         //List<MemberDto> memberDtoList = memberService.findAll();
         model.addAttribute("members", memberPage.getContents());
         model.addAttribute("indexPage", memberPage.getCurrentPage());
         model.addAttribute("totalPages", memberPage.getTotalPages());
+        model.addAttribute("count", memberPage.getCount());
         return "member/list";
 
     }
