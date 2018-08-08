@@ -34,27 +34,27 @@ public class MemberApi {
 
 
         //查詢會員列表
-        @GetMapping("/members")
-        public String list(Model model) {
+        @GetMapping("/members2")
+        public String list(@RequestParam(required = false, defaultValue = "1")Integer page, Model model) {
             List<MemberDto> memberDtoList = memberService.findAll();
             model.addAttribute("members", memberDtoList);
+            model.addAttribute("indexPage", page);
             return "member/list";
 
         }
 
-    //查詢會員列表
-    /*
+    //查詢會員列表(暫無條件)
     @GetMapping("/members")
     public String getAllForms(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
         MemberPage memberPage = memberService.getAllForm(page);
-        List<MemberDto> memberDtoList = memberService.findAll();
-
-
-        model.addAttribute("members", memberPage);
+        //List<MemberDto> memberDtoList = memberService.findAll();
+        model.addAttribute("members", memberPage.getContents());
+        model.addAttribute("indexPage", memberPage.getCurrentPage());
+        model.addAttribute("totalPages", memberPage.getTotalPages());
         return "member/list";
 
     }
-    */
+
 
     @RequestMapping(value = "/toAddMember", method = RequestMethod.GET)
     public String toAddModal(Model model) throws IOException {

@@ -41,12 +41,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+
     public MemberPage getAllForm(Integer page) {
-      /*
+
         Page<Member> p = memberDao.findAll((root, query, cb) -> {
-            query.orderBy(cb.desc(root.get("id")));
-            return cb.equal(root.get("name"), "1");
-        }, new PageRequest(page - 1, 10));
+            query.orderBy(cb.asc(root.get("id")));
+            return cb.and();
+        }, PageRequest.of(page - 1, 2));
+
         MemberPage result = new MemberPage();
         result.setContents(p.getContent()
                 .stream()
@@ -60,8 +62,9 @@ public class MemberServiceImpl implements MemberService {
                         )
                 )
                 .collect(toList()));
-                */
-        return null;
+        result.setCurrentPage(page);
+        result.setTotalPages(p.getTotalPages());
+        return result;
     }
 
     @Override
