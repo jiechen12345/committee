@@ -4,27 +4,37 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+
+    <script src="https://cdn.bootcss.com/moment.js/2.21.0/moment.js"></script>
 </head>
 <body>
 <div id="app">
     <p>{{date}}</p>
-<p>Filter: {{date | dateString}}</p>
+<p>Filter: {{date | aa}}</p>
+<p>年月日: {{date | aa('YYYY-MM-DD')}}</p>
+<p>時分秒: {{date | aa('HH:mm:ss')}}</p>
 </div>
 
 <!----------------------------->
 
 <script>
+    //自訂過濾要寫在前面
+    /*
+    Vue.filter('aa',function (value,format) {
+        return moment(value).format(format || 'YYYY-MM-DD HH:mm:ss') //ifelse
+    })
+     */
+    Vue.filter('aa',function (value,format='YYYY-MM-DD HH:mm:ss') { //也可以這樣寫給默認值
+        return moment(value).format(format) //ifelse
+    })
+
     new Vue({
         el: '#app',
         data: {
             date: new Date()
         }
     })
-    //自訂過濾
-    Vue.filter('dateString',function (value) {
-        return moment(value).format()
-    })
+
 
 </script>
 

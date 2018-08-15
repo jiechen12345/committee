@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [c-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p ref="aa">OK!!</p>
+    <button @click="hit">提示</button>
+
+    <p c-cloak>{{msg}}</p> <!--利用style隱藏標籤 有值就會顯示
+</div>
+
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            msg:'ABC'
+        },
+        methods: {
+            hit(){
+                alert(this.$refs.aa.textContent)
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
