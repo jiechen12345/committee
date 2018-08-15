@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{date}}</p>
+<p>Filter: {{date | dateString}}</p>
+</div>
+
+<!----------------------------->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            date: new Date()
+        }
+    })
+    //自訂過濾
+    Vue.filter('dateString',function (value) {
+        return moment(value).format()
+    })
+
+</script>
+
+<!------------------------------->
+</body>
+</html>

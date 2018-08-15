@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>過度及動畫</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--xxx自訂的-->
+    <style>
+        .xxx-enter-active, .xxx-leave-active {
+            transition: opacity .5s;
+        }
+        .xxx-enter, .xxx-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <button @click="isShow=!isShow">切換</button>
+    <transition name="xxx">
+        <p v-show="isShow">OK!!!</p>
+    </transition>
+    <p>---------</p>
+</div>
+
+<a href="https://cn.vuejs.org/v2/guide/transitions.html">詳細參考</a>
+<!----------------------------->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isShow: true
+        },
+
+    })
+
+
+</script>
+
+<!------------------------------->
+</body>
+</html>

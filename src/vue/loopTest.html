@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <P v-if="ok">OK</P>
+    <P v-else="!ok">no</P>
+
+    <P v-show="ok">OK!show</P>
+    <P v-show="!ok">not OK!show</P>
+    <button @click="ok=!ok">change</button>
+</div>
+
+<div id="app2">
+    <input type="text" v-model="q_name">
+    <h2>集合的物件迴圈</h2>
+    <li v-for="(member,index) in filterMembers" :key="index">
+        {{index}}---{{member.name}}---{{member.age}}----
+        <button @click="deleteMember(index)">刪除</button>
+        ----
+        <button @click="updateMember(index,{name:'cat' ,age:12})">修改</button>
+    </li>
+
+    <h2>物件的屬性迴圈</h2>
+    <li v-for="(value,key) in members[1]" :key="key">
+        {{value}}---{{key}}
+    </li>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            ok: false,
+        }
+    })
+</script>
+<script>
+    new Vue({
+        el: '#app2',
+        data: {
+            members: [
+                {name: 'Jie', age: 30},
+                {name: 'Leo', age: 30},
+                {name: 'Joe', age: 43},
+                {name: 'Jak', age: 45}
+            ],
+            q_name:''
+        },
+        methods: {
+            deleteMember(index) {
+                this.members.splice(index, 1)
+            },
+
+            updateMember(index,newMember){
+                alert(index+' '+newMember)
+                //this.members[index] = newMember  //這種方法只會改數組畫面不會重讀
+                this.members.splice(index, 1,newMember)
+            }
+        },
+        computed:{
+            filterMembers(){
+                const {members,q_name}=this
+                let filterMembers;
+                members.filter(member => member.name)
+                return
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

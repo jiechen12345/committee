@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="message" :title="message2">
+    <p>{{ message }}</p>
+    <button @click="test(message)">
+        gg
+    </button>
+</div>
+<!----------------------------------------------------->
+<div id="app2">
+    <input type="text" v-model="fristName">
+    <input type="text" v-model="lastName"><br>
+    <input type="text" v-model="fullName1"><br>
+    <input type="text" v-model="fullName2"><br>
+    <input type="text" v-model="fullName3">雙向
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app', //element 選擇
+        data: {     //初始化資料
+            message: 'Hello Vue.js!',
+            message2: '页面加载于 ' + new Date().toLocaleString()
+        },
+        methods: {
+            test(content) {
+                alert(content)
+            },
+            test2() {
+                alert(123);
+            }
+        }
+    })
+
+
+</script>
+<script>
+    const vm = new Vue({
+        el: '#app2',
+        data: {     //初始化資料
+            fristName: 'Jie',
+            lastName: 'Chen',
+            fullName2: 'Chen'
+        },
+        computed: {
+            //及時計算裡面有變量有變化就會計算
+            fullName1() {
+                console.log(this)
+                return this.fristName + ' ' + this.lastName
+            },
+            fullName3: {
+                //1.你定義的 2.你沒有調用 3.但最終他執行了
+                //2.甚麼時候調用?
+                get() {
+                    return this.fristName + ' ' + this.lastName
+                },
+                set(value) {
+                    //監視fullName3的值變化
+                    const names = value.split(' ')
+                    this.fristName = names[0]
+                    this.lastName = names[1]
+                }
+            }
+        },
+
+        watch: {
+            fristName: function (value) {
+                this.fullName2 = value + ' ' + this.lastName
+            }
+        },
+
+    })
+
+    vm.$watch('lastName', function (value) {
+        this.fullName2 = this.fristName + ' ' + value
+    })
+</script>
+</html>

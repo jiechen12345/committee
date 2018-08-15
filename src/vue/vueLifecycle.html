@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <button @click="destroyVm">destroy vm</button>
+    <p v-show="isShow">OK!!!</p>
+</div>
+
+<!----------------------------->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isShow: true
+        },
+        mounted() {   //初始化後立即調用
+            this.intervalId = setInterval(() => {   //回調函數盡量用'箭頭函數' 這樣this才能去到外部this
+                console.log('---')
+                this.isShow = !this.isShow
+            }, 1000)
+        },
+        beforeDestroy() {
+            clearInterval(this.intervalId)
+        },
+        methods: {
+            destroyVm() {
+                this.$destroy()
+            }
+        }
+    })
+
+
+</script>
+
+<!------------------------------->
+
+</body>
+</html>
