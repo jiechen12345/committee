@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filterSortTest</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="q_name">
+    <ul>
+        <li v-for="(member,index) in filterMembers" :key="index">
+            {{index}}---{{member.name}}---{{member.age}}
+        </li>
+    </ul>
+    <button @click="setOrderType(0)">不排序</button>
+    <button @click="setOrderType(1)">年齡升序</button>
+    <button @click="setOrderType(2)">年齡降序</button>
+</div>
+
+<script type="text/javascript" src="https://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            q_name: '',
+            orderType:0,//0一般 1 升 2 降
+            members: [
+                {name: 'Jie', age: 30},
+                {name: 'Joe', age: 40},
+                {name: 'Leo', age: 31},
+                {name: 'Jack', age: 41},
+            ]
+        },
+        computed: {
+            filterMembers(){
+                const {q_name, members,orderType} = this
+                let fMember
+                fMember = members.filter(member =>
+                    member.name.indexOf(q_name) != -1
+                )
+
+                //排序
+                if(orderType!=0){
+                    fMember.sort(function (m1,m2) { //負數代表m1在前 正數m2在前
+                        //1:升序 2:降序
+                        if(orderType==2){
+                            return m2.age-m1.age
+                        }else{
+                            return m1.age-m2.age
+                        }
+
+                    })
+                }
+
+                return fMember
+            }
+        },
+        methods:{
+            setOrderType(orderType){
+                this.orderType=orderType;
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>

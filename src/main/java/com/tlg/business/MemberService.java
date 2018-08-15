@@ -14,7 +14,7 @@ public interface MemberService {
 
     MemberDto findOne(Integer id);
 
-    MemberPage getAllForm(Integer page);
+    MemberPage getAllForm(Integer page,Integer pageSize);
 
     void create(MemberReq memberReq);
 

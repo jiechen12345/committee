@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>formTest</title>
+</head>
+<body>
+<div id="app">
+    <form action="/aa" @submit.prevent="handleSubmit">
+ <input type="text" v-model="account"><br>
+ <input type="password" v-model="pwd"><br>
+
+ <input type="radio" id="female" value="0" v-model="sex">
+    <label for="female">女</label>
+    <input type="radio" id="male" value="1" v-model="sex">
+    <label for="male">男</label><br>
+
+    <input type="checkbox" id="baseball" value="0" v-model="likes">
+    <label for="baseball">棒球</label>
+    <input type="checkbox" id="football" value="1" v-model="likes">
+    <label for="football">足球</label>
+    <input type="checkbox" id="pingpong" value="2" v-model="likes">
+    <label for="pingpong">乒乓</label><br>
+<select v-model="depId">
+    <option :value="dep.id" v-for="(dep,index) in deps" :key="index">{{dep.name}}</option>
+</select><br>
+        <textarea rows="10" v-model="desc">
+
+        </textarea><br>
+    <input type="submit" value="GO">
+    </form>
+</div>
+
+<script type="text/javascript" src="https://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            account:'',
+            pwd:'',
+            sex:'0',
+            likes:[0,1],
+            deps:[{id:'1',name:'資訊'},{id:'2',name:'業務'},{id:'3',name:'秘書'}],
+            depId:'1',
+            desc:'aaaa'
+        },
+        methods:{
+            handleSubmit(){
+                console.log(this.account+' '+this.pwd+' '+this.sex+' '+this.likes+' '+this.depId+' '+this.desc)
+            }
+        }
+    })
+</script>
+</body>
+</html>

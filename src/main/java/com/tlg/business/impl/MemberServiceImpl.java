@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,13 +42,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-
-    public MemberPage getAllForm(Integer page) {
+    public MemberPage getAllForm(Integer page, Integer PageSize) {
 
         Page<Member> p = memberDao.findAll((root, query, cb) -> {
             query.orderBy(cb.asc(root.get("id")));
             return cb.and();
-        }, PageRequest.of(page - 1, 5));
+        }, PageRequest.of(page - 1, PageSize));
 
         MemberPage result = new MemberPage();
         result.setContents(p.getContent()

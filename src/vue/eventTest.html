@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event Test</title>
+</head>
+<body>
+<div id="app">
+    <h2>1.綁定監聽</h2>
+    <button @click="test1">test1</button>
+    <button @click="test2('test2')">test2</button>
+    <button @click="test3">test3</button>
+    <button @click="test4(123,$event)">test4</button>
+
+    <h2>2.事件修飾符</h2>
+    <div style="width:200px; height: 200px;background: red" @click="test5">
+        <div style="width:100px; height: 100px;background: blue" @click.stop="test6"></div><!--避免兩個都跑讓他停止-->
+    </div>
+
+    <a href="http://www.google.com.tw" @click.prevent="test7">google</a> <!--阻止事件默認行為-->
+
+    <h2>3.按鍵修飾符</h2>
+    <input type="text" @keyup="test8">
+    <input type="text" @keyup.enter="test9"><!--@keyup.13-->
+</div>
+<script type="text/javascript" src="https://vuejs.org/js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            test1(){
+                alert('test1')
+            },
+            test2(s){
+                alert(s)
+            },
+            test3(event){
+                alert(event.target.innerHTML)
+            },
+            test4(num, event){
+                alert(num + ' ' + event.target.innerHTML)
+            },
+            test5(){
+                alert('out')
+            },
+            test6(){
+                alert('inner')
+            },
+            test7(){
+                alert('test7')
+            },
+            test8(event){
+                if(event.keyCode==13) {//13是enter鍵
+                    alert(event.target.value+' '+event.keyCode)
+                }
+            },
+            test9(event){
+                    alert(event.target.value+' '+event.keyCode)
+
+            },test10(event){
+                alert(event.ley)
+
+            }
+
+        }
+    })
+</script>
+</body>
+</html>
