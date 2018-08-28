@@ -72,9 +72,7 @@ public class MemberApi {
         model.addAttribute("pageSize", pageSize);
         model.addAttribute("count", memberPage.getCount());
         return "member/list";
-
     }
-
 
     @RequestMapping(value = "/toAddMember", method = RequestMethod.GET)
     public String toAddModal(Model model) throws IOException {
@@ -85,7 +83,7 @@ public class MemberApi {
     }
 
     //新增會員
-    @RequestMapping(value = "/member", produces = "application/json", method = RequestMethod.POST)
+    @RequestMapping(value = "/member", method = RequestMethod.POST)
     public String AddModal(@RequestBody MemberReq memberReq, Model model) throws IOException {
         LOGGER.info("**** " + memberReq.toString());
         memberService.create(memberReq);
@@ -107,7 +105,7 @@ public class MemberApi {
     }
 
     //修改會員
-    @RequestMapping(value = "/member", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(value = "/member", method = RequestMethod.PUT)
     public String modifyMember(@RequestBody MemberReq memberReq, Model model) throws IOException {
         LOGGER.info("***** " + memberReq.toString());
         memberService.update(memberReq);
