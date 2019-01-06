@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value ="/test",produces = "application/json")
 public class Test {
     @RequestMapping(value = "/search" ,method = RequestMethod.POST)
-    public Integer find(@RequestBody Integer id) {
+    public MemberDto find(@RequestBody Integer id) {
         System.out.println(1231233122);
-        return 123;
+        MemberDto memberDto=new MemberDto();
+        memberDto.setName("Jony");
+        memberDto.setAccount("Z01");
+        return memberDto;
     }
 }

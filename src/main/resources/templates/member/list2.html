@@ -58,7 +58,7 @@
                                 <input required="required" type="text"
                                        name="name_m" id="name_m"
                                        class="form-control"
-                                       th:value="${memberDto!=null}?${memberDto.name}:123" >
+                                        >
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -159,12 +159,10 @@
             }
         )
     }
-
+    var $name_m = $('#name_m');
     function openModifyModal(id) {
         alert("id 是 " + id);
-
         //window.location.href = "/toModifyMember2/"+ id
-
         $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 type: 'POST',
@@ -175,6 +173,8 @@
             }
         ).done(function (resp) {
             alert(JSON.stringify(resp))
+            $name_m.val(resp.name);
+
         }).fail(function (xhr) {
             alert(xhr.responseText);
         })
