@@ -2,21 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>過度及動畫</title>
+    <title>animated過度及動畫</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!--xxx自訂的-->
-    <style>
-        .xxx-enter-active, .xxx-leave-active {
-            transition: opacity .5s;
-            transition: all .9s;
-        }
+    <link rel="stylesheet" href="../main/resources/static/css/animate.css">
 
-        .xxx-enter, .xxx-leave-to /* .fade-leave-active below version 2.1.8 */
-        {
-            opacity: 0;
-            transform: translateX(158px);
-        }
-    </style>
 </head>
 <body>
 
@@ -24,7 +13,7 @@
     <!--v-enter-->
     <!--v-leave-->
     <button @click="isShow=!isShow">切換</button>
-    <transition name="xxx">
+    <transition enter-active-class="animated bounceInDown" leave-active-class="animated zoomOutUp">
         <p v-show="isShow">OK!!!</p>
     </transition>
     <p>---------</p>
