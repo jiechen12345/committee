@@ -86,6 +86,8 @@
 
         },
     })
+    axios.defaults.baseURL = `http://localhost:8771`
+
     var vm = new Vue({
         el: '#app',
         data: {
@@ -115,7 +117,7 @@
             // },
             add() {
                 console.log('addMemberList')
-                const url = `http://localhost:8771/member/addMember/`
+                const url = `/member/addMember/`
                 axios.post(url, {
                     name: this.name,
                     password: this.password,
@@ -130,8 +132,8 @@
                 })
             },
             del(id) {
-                console.log('delMemberList'+id)
-                const url = `http://localhost:8771/member/delMember/`
+                console.log('delMemberList' + id)
+                const url = `/member/delMember/`
                 axios.delete(url + '/' + id).then(
                     response => {
                         this.getMemberList()
@@ -164,7 +166,7 @@
             },
             getMemberList() {
                 console.log('getMemberList')
-                const url = `http://localhost:8771/member/getMembers/`
+                const url = `/member/getMembers/`
                 axios.get(url).then(
                     response => {
                         this.memberList = response.data
