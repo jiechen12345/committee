@@ -13,8 +13,8 @@
     <!--v-enter-->
     <!--v-leave-->
     <button @click="isShow=!isShow">切換</button>
-    <transition enter-active-class="animated bounceInDown" leave-active-class="animated zoomOutUp">
-        <p v-show="isShow">OK!!!</p>
+    <transition enter-active-class="bounceInDown" leave-active-class="zoomOutUp" :duration="{enter:500,leave:300}">
+        <p v-show="isShow" class="animated">OK!!!</p>
     </transition>
     <p>---------</p>
 </div>
