@@ -5,7 +5,7 @@
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        [c-cloak]{
+        [c-cloak] {
             display: none;
         }
     </style>
@@ -15,7 +15,7 @@
     <p ref="aa">OK!!</p>
     <button @click="hit">提示</button>
 
-    <p c-cloak>{{msg}}</p> <!--利用style隱藏標籤 有值就會顯示
+    <p c-cloak>{{msg}}</p> <!--利用style隱藏標籤 有值就會顯示=-->
 </div>
 
 
@@ -24,10 +24,10 @@
     new Vue({
         el: '#app',
         data: {
-            msg:'ABC'
+            msg: 'ABC'
         },
         methods: {
-            hit(){
+            hit() {
                 alert(this.$refs.aa.textContent)
             }
         }
