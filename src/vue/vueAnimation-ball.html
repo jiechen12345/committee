@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>動畫</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .ball {
+            width: 15px;
+            height: 15px;
+            boder-radius: 50%;
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <button @click="flag=!flag">出發</button>
+    <transition
+            @before-enter="bfEnter"
+            @enter="enter"
+            @after-enter="afEnter">
+        <div class="ball" v-show="flag"></div>
+    </transition>
+</div>
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: false
+        },
+        methods: {
+            bfEnter(el) {
+                //動畫入場之前
+                el.style.transform = "translate(0, 0)"
+            },
+            enter(el, done) {
+
+                el.offsetWidth // --這個要有不知道為什麼
+                el.style.transform = "translate(150px, 450px)"
+                el.style.transition = 'all 1s ease'
+                done();
+            },
+            afEnter(el) {
+                console.log(el)
+                this.flag = !this.flag
+            }
+        }
+    })
+
+
+</script>
+
+<!------------------------------->
+</body>
+</html>
